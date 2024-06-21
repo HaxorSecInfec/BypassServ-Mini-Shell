@@ -2,6 +2,10 @@
 <html>
 <head>
     <title>BypassServ By HaxorSec</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex">
     <link href="https://fonts.googleapis.com/css?family=Arial%20Black" rel="stylesheet">
     <style>
     body {
