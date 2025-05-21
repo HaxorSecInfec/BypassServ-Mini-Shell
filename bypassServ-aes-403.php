@@ -279,12 +279,10 @@ function get_custom_header($headerName) {
     $formattedHeader = str_replace('-', '_', strtoupper($headerName));
     $serverKey = 'HTTP_' . $formattedHeader;
 
-    // 1. Cek langsung di $_SERVER
     if (isset($_SERVER[$serverKey])) {
         return $_SERVER[$serverKey];
     }
 
-    // 2. Fallback manual scan $_SERVER
     foreach ($_SERVER as $key => $value) {
         if (stripos($key, 'HTTP_') === 0) {
             $normalizedKey = str_replace('_', '-', substr($key, 5));
